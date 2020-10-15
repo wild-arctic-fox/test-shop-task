@@ -1,0 +1,18 @@
+{
+  "name": "test-task",
+  "version": "1.0.0",
+  "description": "REST API on express.js, which will simulate the operation of a simple model \"Shop\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alyona Vepritskaya o.veprytska@student.csn.khai.edu",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0"
+  }
+}
