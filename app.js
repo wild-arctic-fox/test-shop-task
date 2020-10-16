@@ -1,16 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const testPage = require("./routes/index");
+const readPage = require("./routes/read");
 const mongoose = require("mongoose");
-
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+app.use(express.urlencoded({ extended: true }));
 
 /////////////////////////////////////////////////////////
 // Add routers
 /////////////////////////////////////////////////////////
+app.use("/read", readPage);
 app.use("/", testPage);
 
 /////////////////////////////////////////////////////////
@@ -26,7 +27,7 @@ const startServer = async () => {
         useUnifiedTopology: true,
       }
     );
-    app.listen(PORT, () => {
+    app.listen(process.env.PORT || 3000, () => {
       console.log("First Log");
     });
   } catch (e) {

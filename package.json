@@ -4,6 +4,8 @@
   "description": "REST API on express.js, which will simulate the operation of a simple model \"Shop\"",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alyona Vepritskaya o.veprytska@student.csn.khai.edu",
@@ -14,6 +16,7 @@
     "mongoose": "^5.10.9"
   },
   "devDependencies": {
-    "eslint": "^7.11.0"
+    "eslint": "^7.11.0",
+    "nodemon": "^2.0.5"
   }
 }
