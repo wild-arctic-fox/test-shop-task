@@ -15,7 +15,7 @@ router.post("/provider", providerDataValidator, async (req, res) => {
   const result = validationResult(req);
   if (!result.isEmpty()) {
     const { errors } = result;
-    res.send(JSON.stringify({ error: errors[0].msg }));
+    res.status(500).send(JSON.stringify({ error: errors[0].msg }));
     return;
   }
   const providerModel = new ProviderModel({ name, email, phone });
@@ -23,9 +23,9 @@ router.post("/provider", providerDataValidator, async (req, res) => {
     await providerModel.save();
     res.setHeader("Content-Type", "application/json");
     if (!providerModel) {
-      res.send(JSON.stringify({ error: "something went wrong" }));
+      return res.status(400).send({ message: "Bad request." });
     } else {
-      res.send(JSON.stringify(providerModel));
+      return res.status(200).send({ message: "Provider created." });
     }
   } catch (e) {
     console.log(e);
