@@ -2,15 +2,20 @@ require("dotenv").config();
 const express = require("express");
 const testPage = require("./routes/index");
 const readPage = require("./routes/read");
+const createPage = require("./routes/create");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 /////////////////////////////////////////////////////////
 // Add routers
 /////////////////////////////////////////////////////////
+app.use("/create", createPage);
 app.use("/read", readPage);
 app.use("/", testPage);
 
