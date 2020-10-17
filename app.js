@@ -5,8 +5,8 @@ const readPage = require("./routes/read");
 const createPage = require("./routes/create");
 const deletePage = require("./routes/delete");
 const updatePage = require("./routes/update");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const { connect } = require("./db/connectDB");
 
 const app = express();
 
@@ -28,13 +28,8 @@ app.use("/", testPage);
 /////////////////////////////////////////////////////////
 const startServer = async () => {
   try {
-    await mongoose.connect(
-      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gehfl.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
-      {
-        useNewUrlParser: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-      }
+    await connect(
+      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gehfl.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
     );
     app.listen(process.env.PORT || 3000, () => {
       console.log("First Log");
