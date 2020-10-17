@@ -22,7 +22,7 @@ router.put("/provider/:id", providerDataValidator, async (req, res) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
       const { errors } = result;
-      return res.status(400).send(JSON.stringify({ error: errors[0].msg }));
+      return res.status(400).send(JSON.stringify({ message: errors[0].msg }));
     }
 
     const providerModel = await ProviderModel.findByIdAndUpdate(
@@ -33,10 +33,10 @@ router.put("/provider/:id", providerDataValidator, async (req, res) => {
     if (providerModel) {
       return res.status(200).send({ message: "Provider updated." });
     } else {
-      return res.status(404).send({ message: "Unable update provider." });
+      return res.status(400).send({ message: "Unable update provider." });
     }
   } catch (e) {
-    return res.status(400).send({ message: "Bad request." });
+    return res.status(500).send({ message: "Internal server error" });
   }
 });
 

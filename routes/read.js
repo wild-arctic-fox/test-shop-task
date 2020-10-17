@@ -14,12 +14,12 @@ router.get("/provider/:id", async (req, res) => {
     const data = await ProviderModel.findById(req.params.id);
     res.setHeader("Content-Type", "application/json");
     if (!data) {
-      res.send(JSON.stringify({ error: "this provider is not found" }));
+      return res.status(404).send(JSON.stringify({ message: "Provider not found" }));
     } else {
-      res.send(JSON.stringify(data));
+      return res.status(200).send(JSON.stringify(data));
     }
   } catch (e) {
-    throw new Error();
+    return res.status(500).send({ message: "Internal server error" });
   }
 });
 
@@ -30,12 +30,14 @@ router.get("/product/:id", async (req, res) => {
     const data = await ProductModel.findById(req.params.id).lean();
     res.setHeader("Content-Type", "application/json");
     if (!data) {
-      res.send(JSON.stringify({ error: "this product is not found" }));
+      return res
+        .status(404)
+        .send(JSON.stringify({ message: "Product not found" }));
     } else {
-      res.send(JSON.stringify(data));
+      return res.status(200).send(JSON.stringify(data));
     }
   } catch (e) {
-    throw new Error();
+    return res.status(500).send({ message: "Internal server error" });
   }
 });
 

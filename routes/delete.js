@@ -12,12 +12,12 @@ router.delete("/provider/:id", async (req, res) => {
   try {
     const result = await ProviderModel.deleteOne({ _id: req.params.id });
     if (result.deletedCount === 1)
-      return res.status(200).send({ message: "Provider deleted." });
+      return res.status(200).send({ message: "Provider deleted" });
     else {
-      return res.status(500).send({ message: "Unable delete user." });
+      return res.status(500).send({ message: "Provider was not deleted" });
     }
   } catch (e) {
-    return res.status(400).send({ message: "Bad request." });
+    return res.status(500).send({ message: "Internal server error" });
   }
 });
 
