@@ -3,6 +3,8 @@ const express = require("express");
 const testPage = require("./routes/index");
 const readPage = require("./routes/read");
 const createPage = require("./routes/create");
+const deletePage = require("./routes/delete");
+const updatePage = require("./routes/update");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
@@ -15,6 +17,8 @@ app.use(bodyParser.json());
 /////////////////////////////////////////////////////////
 // Add routers
 /////////////////////////////////////////////////////////
+app.use("/update", updatePage);
+app.use("/delete", deletePage);
 app.use("/create", createPage);
 app.use("/read", readPage);
 app.use("/", testPage);
