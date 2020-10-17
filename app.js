@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({path: './config/.env'});
 const express = require("express");
 const testPage = require("./routes/index");
 const readPage = require("./routes/read");
