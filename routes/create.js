@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const ProviderModel = require("../models/providerModel");
-const { providerDataValidator } = require("../utils/validators");
+const { providerDataValidator } = require("../helpers/utils/validators");
 const { validationResult } = require("express-validator");
 
 /////////////////////////////////////////////////////////
