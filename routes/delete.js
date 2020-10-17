@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const ProviderModel = require("../models/providerModel");
 const { deleteProvider } = require("../db/deleteOperation");
 
 /////////////////////////////////////////////////////////
