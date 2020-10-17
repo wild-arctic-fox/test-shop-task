@@ -2,6 +2,7 @@ const { Router } = require("express");
 const ProviderModel = require("../models/providerModel");
 const { providerDataValidator } = require("../helpers/utils/validators");
 const { validationResult } = require("express-validator");
+const { updateProvider } = require("../db/updateOperation");
 
 /////////////////////////////////////////////////////////
 // Router for updating
@@ -25,10 +26,7 @@ router.put("/provider/:id", providerDataValidator, async (req, res) => {
       return res.status(400).send(JSON.stringify({ message: errors[0].msg }));
     }
 
-    const providerModel = await ProviderModel.findByIdAndUpdate(
-      { _id: req.params.id },
-      provider
-    );
+    const providerModel = await updateProvider(req.params.id, provider);
 
     if (providerModel) {
       return res.status(200).send({ message: "Provider updated." });
