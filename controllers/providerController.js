@@ -1,4 +1,5 @@
 const { readProviderData } = require("../db/readOperation");
+const { deleteProvider } = require("../db/deleteOperation");
 
 const get = async (req, res) => {
   try {
@@ -16,4 +17,17 @@ const get = async (req, res) => {
   }
 };
 
-module.exports = { get };
+const remove = async (req, res) => {
+  try {
+    const result = await deleteProvider(req.params.id);
+    if (result.deletedCount === 1)
+      return res.status(200).send({ message: "Provider deleted" });
+    else {
+      return res.status(500).send({ message: "Provider was not deleted" });
+    }
+  } catch (e) {
+    return res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+module.exports = { get, remove };
