@@ -1,8 +1,6 @@
 const { Router } = require("express");
-const ProviderModel = require("../models/providerModel");
 const { providerDataValidator } = require("../helpers/utils/validators");
-const { validationResult } = require("express-validator");
-const { updateProvider } = require("../db/updateOperation");
+const { update: updateProvider } = require("../controllers/providerController");
 
 /////////////////////////////////////////////////////////
 // Router for updating
@@ -10,32 +8,7 @@ const { updateProvider } = require("../db/updateOperation");
 const router = Router();
 
 /////////////////////////////////////////////////////////
-// Receive provider data and update it
-router.put("/provider/:id", providerDataValidator, async (req, res) => {
-  try {
-    const { name, email, phone } = req.body;
-    const provider = {
-      name,
-      email,
-      phone,
-    };
-
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-      const { errors } = result;
-      return res.status(400).send(JSON.stringify({ message: errors[0].msg }));
-    }
-
-    const providerModel = await updateProvider(req.params.id, provider);
-
-    if (providerModel) {
-      return res.status(200).send({ message: "Provider updated." });
-    } else {
-      return res.status(400).send({ message: "Unable update provider." });
-    }
-  } catch (e) {
-    return res.status(500).send({ message: "Internal server error" });
-  }
-});
+// Update provider
+router.put("/provider/:id", providerDataValidator, updateProvider);
 
 module.exports = router;
