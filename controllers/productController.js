@@ -20,8 +20,6 @@ const get = async (req, res) => {
   }
 };
 
-
-
 //////////////////////////////////////////////
 // Return all product in json format
 const getAll = async (req, res) => {
@@ -40,10 +38,8 @@ const getAll = async (req, res) => {
   }
 };
 
-
-
 //////////////////////////////////////////////
-// Create product 
+// Create product
 const create = async (req, res) => {
   try {
     // validate data

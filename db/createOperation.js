@@ -17,7 +17,6 @@ const createProduct = async (product) => {
     await model.save();
     return model;
   } catch (e) {
-    console.log(e)
     throw new Error(e);
   }
 };
