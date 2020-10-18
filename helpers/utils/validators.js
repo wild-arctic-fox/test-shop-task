@@ -18,9 +18,8 @@ exports.providerDataValidator = [
 
 exports.productDataValidator = [
   // check name format
-  body("name", "Incorrect type of name\n 2 alphanumeric symbols is required")
+  body("name", "Incorrect type of name\n 2 symbols is required")
     .isLength({ min: 2 })
-    .isAlphanumeric()
     .trim(),
 
   // check category format
@@ -29,7 +28,6 @@ exports.productDataValidator = [
     "Incorrect type of category\n 3 alphanumeric symbols is required"
   )
     .isLength({ min: 3 })
-    .isAlphanumeric()
     .trim(),
 
   // check price format
