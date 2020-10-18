@@ -1,4 +1,4 @@
-const { readProductData } = require("../db/readOperation");
+const { readProductData, readProductsData } = require("../db/readOperation");
 
 const get = async (req, res) => {
   try {
@@ -16,4 +16,20 @@ const get = async (req, res) => {
   }
 };
 
-module.exports = { get };
+const getAll = async (req, res) => {
+  try {
+    const data = await readProductsData();
+    res.setHeader("Content-Type", "application/json");
+    if (!data) {
+      return res
+        .status(404)
+        .send(JSON.stringify({ message: "Products not found" }));
+    } else {
+      return res.status(200).send(JSON.stringify(data));
+    }
+  } catch (e) {
+    return res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+module.exports = { get, getAll };

@@ -10,6 +10,15 @@ const readProviderData = async (id) => {
   }
 };
 
+const readProvidersData = async () => {
+  try {
+    const data = await ProviderModel.find();
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
 const readProductData = async (id) => {
   try {
     const data = await ProductModel.findById(id);
@@ -19,4 +28,18 @@ const readProductData = async (id) => {
   }
 };
 
-module.exports = { readProviderData, readProductData };
+const readProductsData = async () => {
+  try {
+    const data = await ProductModel.find();
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+module.exports = {
+  readProviderData,
+  readProductData,
+  readProvidersData,
+  readProductsData,
+};

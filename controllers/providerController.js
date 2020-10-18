@@ -1,7 +1,23 @@
-const { readProviderData } = require("../db/readOperation");
+const { readProviderData, readProvidersData } = require("../db/readOperation");
 const { deleteProvider } = require("../db/deleteOperation");
 const { validationResult } = require("express-validator");
 const { createProvider } = require("../db/createOperation");
+
+const getAll = async (req, res) => {
+  try {
+    const data = await readProvidersData();
+    res.setHeader("Content-Type", "application/json");
+    if (!data) {
+      return res
+        .status(404)
+        .send(JSON.stringify({ message: "Providers not found" }));
+    } else {
+      return res.status(200).send(JSON.stringify(data));
+    }
+  } catch (e) {
+    return res.status(500).send({ message: "Internal server error" });
+  }
+};
 
 const get = async (req, res) => {
   try {
@@ -83,4 +99,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { get, remove, create, update };
+module.exports = { get, remove, create, update, getAll };
