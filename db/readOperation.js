@@ -22,6 +22,7 @@ const readProvidersData = async () => {
 const readProductData = async (id) => {
   try {
     const data = await ProductModel.findById(id);
+    await data.populate("idProvider").execPopulate();
     return data;
   } catch (e) {
     throw new Error(e);
