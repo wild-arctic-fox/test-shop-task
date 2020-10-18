@@ -10,7 +10,7 @@ exports.providerDataValidator = [
     .isAlphanumeric()
     .trim(),
 
-  // check phome format
+  // check phone format
   body("phone", "Incorrect  phone").isNumeric(),
 ];
 
@@ -45,6 +45,4 @@ exports.productDataValidator = [
   // check amount format
   body("amount", "Incorrect  amount").isNumeric(),
 
-  // check expirationDate format
-  body("amount", "Incorrect  expirationDate").isDate(),
 ];
