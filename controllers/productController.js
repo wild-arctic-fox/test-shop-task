@@ -1,4 +1,4 @@
-const { readProductData, readProductsData } = require("../db/readOperation");
+const { readProductData, readProductsData, readProductByParams } = require("../db/readOperation");
 const { createProduct } = require("../db/createOperation");
 const { deleteProduct } = require("../db/deleteOperation");
 const { updateProduct } = require("../db/updateOperation");
@@ -11,6 +11,24 @@ const get = async (req, res) => {
     const data = await readProductData(req.params.id);
     res.setHeader("Content-Type", "application/json");
     if (!data) {
+      return res
+        .status(404)
+        .send(JSON.stringify({ message: "Product not found" }));
+    } else {
+      return res.status(200).send(JSON.stringify(data));
+    }
+  } catch (e) {
+    return res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+//////////////////////////////////////////////
+// Return product by params in json format
+const getWithParams = async (req, res) => {
+  try {
+    const data = await readProductByParams(req.query);
+    res.setHeader("Content-Type", "application/json");
+    if (data.length === 0) {
       return res
         .status(404)
         .send(JSON.stringify({ message: "Product not found" }));
@@ -103,4 +121,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { get, getAll, create, remove, update };
+module.exports = { get, getAll, create, remove, update, getWithParams };

@@ -29,6 +29,16 @@ const readProductData = async (id) => {
   }
 };
 
+//http://localhost:3000/read/product?amount=1007&name=Banana&providerName=Jane
+const readProductByParams = async (params) => {
+  try {
+    const data = await ProductModel.find(params).populate("idProvider").exec();
+    return data;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
 const readProductsData = async () => {
   try {
     const data = await ProductModel.find().populate("idProvider").exec();
@@ -43,4 +53,5 @@ module.exports = {
   readProductData,
   readProvidersData,
   readProductsData,
+  readProductByParams,
 };
