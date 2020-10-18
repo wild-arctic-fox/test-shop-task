@@ -14,6 +14,8 @@ exports.providerDataValidator = [
   body("phone", "Incorrect  phone").isNumeric(),
 ];
 
+
+
 exports.productDataValidator = [
   // check name format
   body("name", "Incorrect type of name\n 2 alphanumeric symbols is required")
@@ -36,7 +38,7 @@ exports.productDataValidator = [
   // check measurability format
   body(
     "measurability",
-    "Incorrect type of measurability\n 1 alphanumeric symbols is required"
+    "Incorrect type of measurability\n 1 alpha symbols is required"
   )
     .isLength({ min: 1 })
     .isAlpha()

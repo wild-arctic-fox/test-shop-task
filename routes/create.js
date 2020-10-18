@@ -4,7 +4,7 @@ const { create: createProvider } = require("../controllers/providerController");
 const { create: createProduct } = require("../controllers/productController");
 
 /////////////////////////////////////////////////////////
-// Router for adding a new Providers and Products
+// Router for creating a new Providers and Products
 /////////////////////////////////////////////////////////
 const router = Router();
 

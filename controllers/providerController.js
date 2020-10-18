@@ -3,6 +3,9 @@ const { deleteProvider } = require("../db/deleteOperation");
 const { validationResult } = require("express-validator");
 const { createProvider } = require("../db/createOperation");
 
+
+//////////////////////////////////////////////
+// Return all providers in json format
 const getAll = async (req, res) => {
   try {
     const data = await readProvidersData();
@@ -19,6 +22,10 @@ const getAll = async (req, res) => {
   }
 };
 
+
+
+//////////////////////////////////////////////
+// Return provider by ID in json format
 const get = async (req, res) => {
   try {
     const data = await readProviderData(req.params.id);
@@ -35,6 +42,10 @@ const get = async (req, res) => {
   }
 };
 
+
+
+//////////////////////////////////////////////
+// Delete provider by ID
 const remove = async (req, res) => {
   try {
     const result = await deleteProvider(req.params.id);
@@ -48,6 +59,10 @@ const remove = async (req, res) => {
   }
 };
 
+
+
+//////////////////////////////////////////////
+// Create provider
 const create = async (req, res) => {
   try {
     // validate data
@@ -72,6 +87,10 @@ const create = async (req, res) => {
   }
 };
 
+
+
+//////////////////////////////////////////////
+// Update provider by ID
 const update = async (req, res) => {
   try {
     const { name, email, phone } = req.body;

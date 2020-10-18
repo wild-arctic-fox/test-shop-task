@@ -7,7 +7,7 @@ const { remove: removeProvider } = require("../controllers/providerController");
 const router = Router();
 
 /////////////////////////////////////////////////////////
-// Receive provider id and delete it
+// Delete provider by Id
 router.delete("/provider/:id", removeProvider);
 
 module.exports = router;

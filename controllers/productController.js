@@ -2,6 +2,8 @@ const { readProductData, readProductsData } = require("../db/readOperation");
 const { createProduct } = require("../db/createOperation");
 const { validationResult } = require("express-validator");
 
+//////////////////////////////////////////////
+// Return product by ID in json format
 const get = async (req, res) => {
   try {
     const data = await readProductData(req.params.id);
@@ -18,6 +20,10 @@ const get = async (req, res) => {
   }
 };
 
+
+
+//////////////////////////////////////////////
+// Return all product in json format
 const getAll = async (req, res) => {
   try {
     const data = await readProductsData();
@@ -34,10 +40,13 @@ const getAll = async (req, res) => {
   }
 };
 
+
+
+//////////////////////////////////////////////
+// Create product 
 const create = async (req, res) => {
   try {
     // validate data
-
     const result = validationResult(req);
     if (!result.isEmpty()) {
       const { errors } = result;
