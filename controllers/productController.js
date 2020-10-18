@@ -1,5 +1,6 @@
 const { readProductData, readProductsData } = require("../db/readOperation");
 const { createProduct } = require("../db/createOperation");
+const { deleteProduct } = require("../db/deleteOperation");
 const { validationResult } = require("express-validator");
 
 //////////////////////////////////////////////
@@ -63,4 +64,20 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { get, getAll, create };
+//////////////////////////////////////////////
+// Delete product by ID
+const remove = async (req, res) => {
+  try {
+    const result = await deleteProduct(req.params.id);
+    if (result.deletedCount === 1)
+      return res.status(200).send({ message: "Product deleted" });
+    else {
+      return res.status(500).send({ message: "Product was not deleted" });
+    }
+  } catch (e) {
+    return res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+
+module.exports = { get, getAll, create, remove };
