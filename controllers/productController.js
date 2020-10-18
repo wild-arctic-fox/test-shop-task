@@ -1,6 +1,7 @@
 const { readProductData, readProductsData } = require("../db/readOperation");
 const { createProduct } = require("../db/createOperation");
 const { deleteProduct } = require("../db/deleteOperation");
+const { updateProduct } = require("../db/updateOperation");
 const { validationResult } = require("express-validator");
 
 //////////////////////////////////////////////
@@ -79,5 +80,27 @@ const remove = async (req, res) => {
   }
 };
 
+//////////////////////////////////////////////
+// Update product by ID
+const update = async (req, res) => {
+  try {
+    const result = validationResult(req);
+    if (!result.isEmpty()) {
+      const { errors } = result;
+      return res.status(400).send(JSON.stringify({ message: errors[0].msg }));
+    }
 
-module.exports = { get, getAll, create, remove };
+    const product = { ...req.body };
+    const productModel = await updateProduct(req.params.id, product);
+
+    if (productModel) {
+      return res.status(200).send({ message: "Product updated" });
+    } else {
+      return res.status(400).send({ message: "Unable update product" });
+    }
+  } catch (e) {
+    return res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+module.exports = { get, getAll, create, remove, update };
