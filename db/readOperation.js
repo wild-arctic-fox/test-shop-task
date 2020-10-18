@@ -31,7 +31,7 @@ const readProductData = async (id) => {
 
 const readProductsData = async () => {
   try {
-    const data = await ProductModel.find();
+    const data = await ProductModel.find().populate("idProvider").exec();
     return data;
   } catch (e) {
     throw new Error(e);
