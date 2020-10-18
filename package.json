@@ -1,0 +1,25 @@
+{
+  "name": "test-task",
+  "version": "1.0.0",
+  "description": "REST API on express.js, which will simulate the operation of a simple model \"Shop\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alyona Vepritskaya o.veprytska@student.csn.khai.edu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "mongoose": "^5.10.9",
+    "validators": "^0.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "nodemon": "^2.0.5"
+  }
+}
