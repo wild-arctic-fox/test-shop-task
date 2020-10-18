@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { get: getProvider } = require("../controllers/providerController");
-const { get: getProduct } = require("../controllers/productController");
+const { get: getProduct, getWithParams } = require("../controllers/productController");
 const { getAll: getAllProviders } = require("../controllers/providerController");
 const { getAll: getAllProducts } = require("../controllers/productController");
 
@@ -20,6 +20,10 @@ router.get("/providers", getAllProviders);
 /////////////////////////////////////////////////////////
 // Router for getting product by ID
 router.get("/product/:id", getProduct);
+
+/////////////////////////////////////////////////////////
+// Router for getting product by params
+router.get("/product?", getWithParams);
 
 /////////////////////////////////////////////////////////
 // Router for getting all products
