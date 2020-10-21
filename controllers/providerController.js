@@ -2,6 +2,7 @@ const { readProviderData, readProvidersData } = require("../db/readOperation");
 const { deleteProvider } = require("../db/deleteOperation");
 const { validationResult } = require("express-validator");
 const { createProvider } = require("../db/createOperation");
+const { updateProvider } = require("../db/updateOperation")
 
 
 //////////////////////////////////////////////
