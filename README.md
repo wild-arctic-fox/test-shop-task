@@ -1,4 +1,5 @@
 # test-shop-task
+REST API on express.js, which will simulate the operation of a simple model "Shop" with CRUD operations.
 Use MongoDB database. Link to DB visualization - https://whimsical.com/KccMXT342wH2GdUWRvDDZF@2Ux7TurymNEWe6obzv5p
 
 
