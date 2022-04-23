@@ -1,5 +1,5 @@
 const { readProductData, readProductsData, readProductByParams } = require("../db/readOperation");
-const { createProduct } = require("../db/createOperation");
+const { createProduct, createProducts } = require("../db/createOperation");
 const { deleteProduct } = require("../db/deleteOperation");
 const { updateProduct } = require("../db/updateOperation");
 const { validationResult } = require("express-validator");
@@ -83,6 +83,26 @@ const create = async (req, res) => {
   }
 };
 
+
+//////////////////////////////////////////////
+// Create products
+const createMany = async (req, res) => {
+  try {
+
+    // try to save data
+    const products = req.body;
+    const productModel = await createProducts(products);
+    res.setHeader("Content-Type", "application/json");
+    if (!productModel) {
+      return res.status(500).send({ message: "Unable create products" });
+    } else {
+      return res.status(200).send({ message: "Products created" });
+    }
+  } catch (e) {
+    return res.status(500).send({ message: "Internal server error" });
+  }
+};
+
 //////////////////////////////////////////////
 // Delete product by ID
 const remove = async (req, res) => {
@@ -121,4 +141,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { get, getAll, create, remove, update, getWithParams };
+module.exports = { get, getAll, create, remove, update, getWithParams, createMany };

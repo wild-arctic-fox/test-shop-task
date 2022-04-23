@@ -21,4 +21,15 @@ const createProduct = async (product) => {
   }
 };
 
-module.exports = { createProvider, createProduct };
+const createProducts = async (products) => {
+  try {
+    
+    const model = ProductModel;
+    await model.insertMany(products);
+    return model;
+  } catch (e) {
+    throw new Error(e);
+  }
+};
+
+module.exports = { createProvider, createProduct, createProducts };

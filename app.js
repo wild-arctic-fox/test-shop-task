@@ -28,11 +28,9 @@ app.use("/", testPage);
 /////////////////////////////////////////////////////////
 const startServer = async () => {
   try {
-    await connect(
-      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gehfl.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
-    );
+    await connect(process.env.MONGO_URL);
     app.listen(process.env.PORT || 3000, () => {
-      console.log("First Log");
+      console.log("Server is started");
     });
   } catch (e) {
     console.log(e);
